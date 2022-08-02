@@ -1,0 +1,17 @@
+class Solution{
+  public:
+    /*The function should return the root of the modified tree*/
+    Node* del(Node* root,int k){
+       if(root==nullptr)
+           return root;
+       if(root->data>=k)
+           return del(root->left,k);
+       root->left=del(root->left,k);
+       root->right=del(root->right,k);
+   }
+   Node* deleteNode(Node* root, int k)
+   {
+       //Your code here
+       return del(root,k);
+   }
+};
