@@ -1,0 +1,14 @@
+
+int CountPS(char S[], int N)
+{   vector<vector<int>> m(N,vector<int>(N));
+    int count=0;
+    for(int i=N-1;i>=0;i--){
+        for(int j=i;j<N;j++){
+            if(i==j) m[i][j]=1;
+            else if((j-i)==1) m[i][j]=(S[i]==S[j]?1:0);
+            else m[i][j]=(S[i]==S[j]?m[i+1][j-1]:0);
+            if(j-i>=1)count+=m[i][j];
+        }
+    }
+    return count;
+}
