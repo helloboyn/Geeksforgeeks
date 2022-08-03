@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    int maximumSumRectangle(int n, int m, vector<vector<int>> mat) {
+       
+       int best=INT32_MIN;
+       for(int i=0;i<n;i++)
+       {
+           int sub[m]={0};
+           for(int j=i;j<n;j++)
+           {
+               int sum=0;
+               for(int k=0;k<m;k++)
+               sub[k]+=mat[j][k];
+               
+               for(int k=0;k<m;k++)
+               {
+                   sum+=sub[k];
+                   best=max(best,sum);
+                   if(sum<0)
+                   sum=0;
+               }
+           }
+       }
+       return best;
+       
+   }
+};
