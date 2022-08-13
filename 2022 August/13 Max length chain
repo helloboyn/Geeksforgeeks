@@ -1,0 +1,20 @@
+class Solution{
+public:
+    /*You are required to complete this method*/
+    int maxChainLen(struct val p[],int n){
+       vector<pair<int,int>>v;
+       for(int i=0;i<n;i++){
+           v.push_back({p[i].second,p[i].first});
+       }
+       sort(v.begin(),v.end());
+       int maxi=v[0].first;
+       int count=1;
+       for(int i=0;i<n;i++){
+           if(v[i].second>maxi){
+               maxi=v[i].first;
+               count++;
+           }
+       }
+       return count;
+   }
+};
