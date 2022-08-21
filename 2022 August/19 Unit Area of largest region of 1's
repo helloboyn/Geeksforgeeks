@@ -1,0 +1,30 @@
+class Solution {
+int dfs(vector<vector<int>>& grid,int i,int j){
+       if(i>=grid.size() || j>=grid[0].size() || i<0 || j<0 || grid[i][j]==0){
+           return 0;
+       }
+       grid[i][j]=0;
+       int W=dfs(grid,i,j-1);
+       int E=dfs(grid,i,j+1);
+       int N=dfs(grid,i-1,j);
+       int S=dfs(grid,i+1,j);
+       int NW=dfs(grid,i-1,j-1);
+       int NE=dfs(grid,i-1,j+1);
+       int SW=dfs(grid,i+1,j-1);
+       int SE=dfs(grid,i+1,j+1);
+       return 1+W+E+N+S+NW+NE+SW+SE;
+   }
+   public:
+   int findMaxArea(vector<vector<int>>& grid) {
+      int res=0;
+      for(int i=0;i<grid.size();i++){
+          for(int j=0;j<grid[0].size();j++){
+              if(grid[i][j]==1){
+                  int count=dfs(grid,i,j);
+                  res=max(res,count);
+              }
+          }
+      }
+      return res;
+   }
+};
