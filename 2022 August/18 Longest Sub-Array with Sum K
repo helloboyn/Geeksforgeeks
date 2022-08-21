@@ -1,0 +1,33 @@
+class Solution{
+    public:
+    int lenOfLongSubarr(int A[],  int N, int K) 
+   { 
+       unordered_map<int,vector<int>>m;
+       vector<int>b;
+       b.push_back(-1);
+       m[0]=b;
+       int sum=0;
+       int mx=INT_MIN;
+       for(int i=0;i<N;i++)
+       {
+           sum=sum+A[i];
+           if(m.find(sum-K)!=m.end())
+           {
+               vector<int>a=m[sum-K];
+               mx=max(mx,i-a[0]);
+           }
+           
+               m[sum].push_back(i);
+
+       }
+       if(mx==INT_MIN)
+       {
+           return 0;
+       }
+       else
+       {
+           return mx;
+       }
+   } 
+
+};
