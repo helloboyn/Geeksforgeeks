@@ -1,0 +1,28 @@
+class Solution {
+public:
+	int minStepToReachTarget(vector<int>&KnightPos, vector<int>&TargetPos, int N){
+    if(KnightPos==TargetPos) return 0;
+    vector<vector<int>> dir = {{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2},{-1,-2},{-2,-1}};
+   
+    vector<vector<int>> board(N+1,vector<int>(N+1,0));
+    queue<pair<int,int>> q;
+    int tx = TargetPos[0],ty = TargetPos[1];
+    q.push({KnightPos[0],KnightPos[1]});
+    while(!q.empty()){
+        auto pos = q.front();
+        q.pop();
+        if(pos.first==tx && pos.second==ty) return board[tx][ty];
+        
+        for(int d=0;8>d;d++){
+            int px = pos.first+dir[d][0];
+            int py = pos.second+dir[d][1];
+            
+            if(0<px && 0<py && N>=px && N>=py && 0==board[px][py]){
+                q.push({px,py});
+                board[px][py] = board[pos.first][pos.second]+1;
+            }
+        }
+    }
+    return -1;
+}
+};
