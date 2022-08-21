@@ -1,0 +1,40 @@
+class Solution {
+  public:
+    string findSum(string x, string y) {
+        int car=0;
+        int n=x.length(),m=y.length();
+        int i=n-1,j=m-1;
+        string ans="";
+        int sum,rem;
+        while(i>=0&&j>=0){
+             sum=(x[i]-'0')+(y[j]-'0')+car;
+             rem=sum%10;
+             ans+=(rem+'0');
+             car=sum/10;
+             i--;
+             j--;
+        }
+        while(i>=0){
+             sum=(x[i]-'0')+car;
+             rem=sum%10;
+             ans+=(rem+'0');
+             car=sum/10;
+             i--;
+        }
+          while(j>=0){
+             sum=(y[j]-'0')+car;
+             rem=sum%10;
+             ans+=(rem+'0');
+             car=sum/10;
+             j--;
+        }
+        if(car>0)ans+=(car+'0');
+        string s=string(ans.length(),'0');
+        if(ans==s)return "0";
+        reverse(ans.begin(),ans.end());
+               int ind=0;
+        while(ind<ans.length()&&ans[ind]=='0'){ind++;}
+    
+        return ans.substr(ind);
+    }
+};
