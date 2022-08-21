@@ -1,0 +1,44 @@
+class Solution{
+  public:
+    Node* findAnsistor(Node* root, int first, int second){
+        if(!root)
+            return NULL;
+        if(root->data == first || root->data == second)
+            return root;
+        Node* l = findAnsistor(root->left, first, second);
+        Node* r = findAnsistor(root->right, first, second);
+        if(l && r)
+            return root;
+        if(l)
+            return l;
+        return r;
+    }
+    
+    int cntTurn(Node* root, int node, int d, int tc){
+        if(!root)
+            return 0;
+        if(root->data == node)
+            return tc;
+        int ltc = tc, rtc = tc;
+        if(d == 0)
+            rtc++;
+        else if(d == 1)
+            ltc++;
+        int l = cntTurn(root->left, node, 0, ltc);
+        int r = cntTurn(root->right, node, 1, rtc);
+        if(l != 0)
+            return l;
+        return r;
+    }
+  
+    
+    int NumberOFTurns(struct Node* root, int first, int second)
+    {
+      // Your code goes here
+        Node* ansistor = findAnsistor(root, first, second);
+        int turns = cntTurn(ansistor, first, -1, 0) + cntTurn(ansistor, second, -1, 0) + 1;
+        if(ansistor->data == first || ansistor->data == second)
+            turns--;
+        return turns;
+    }
+};
