@@ -1,0 +1,13 @@
+bool solve(Node* l, Node* r){
+    if(!l && !r)
+    return true;
+    if(!l || !r)
+    return false;
+    return solve(l->left,r->right) and solve(l->right, r->left);
+}
+bool IsFoldable(Node* root)
+{
+    if(!root)
+    return true;
+    return solve(root -> left, root-> right);
+}
