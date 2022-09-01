@@ -1,0 +1,27 @@
+class Solution {
+public:
+set<int>s;
+ void sub( int ind ,vector<int>&nums,int n,int sum,vector<vector<int>>&dp)
+ {
+     if(ind==n)
+     {
+         s.insert(sum);
+         return;
+     }
+     if(dp[ind][sum]==1)return ;
+     sub(ind+1,nums,n,sum+nums[ind],dp);
+     sub(ind+1,nums,n,sum,dp);
+     dp[ind][sum] =1;
+ }
+	vector<int> DistinctSum(vector<int>nums){
+	   int n=nums.size();
+	   vector<int>ans;
+	   vector<vector<int>>dp(n+1,vector<int>(100000,0));
+	   sub(0,nums,n,0,dp);
+	   for(auto &it:s)
+	   {
+	       ans.push_back(it);
+	   }
+	   return ans;
+	}
+};
