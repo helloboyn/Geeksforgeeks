@@ -1,0 +1,17 @@
+class Solution{
+    public:
+    vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target)
+    {
+        vector<pair<int, int>>v;
+        unordered_map<int, int>mp;
+        while(head){
+            if(mp.find(target-head->data)!=mp.end()){
+                v.push_back({target-head->data,head->data});
+            }
+            else mp[head->data]++;
+            head=head->next;
+        }
+        sort(v.begin(),v.end());
+        return v;
+    }
+};
