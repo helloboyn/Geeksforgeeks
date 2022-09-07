@@ -1,0 +1,18 @@
+class Solution{
+public:
+    int isStackPermutation(int N,vector<int> &A,vector<int> &B){
+        stack<int>st;
+        int i=0;
+        int j=0;
+        while(i<N and j<N){
+            if(st.empty() ||st.top()!=B[j]){
+                st.push(A[i++]);
+            }
+            while(st.size() && st.top()==B[j]){
+                j++;
+                st.pop();
+            }
+        }
+        return i==j;
+    }
+};
