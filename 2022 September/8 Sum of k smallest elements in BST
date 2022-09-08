@@ -1,0 +1,16 @@
+void inorder(Node* root,int &sum,int& k){
+    if(!root)   return;
+    if(k==0)    return;
+    inorder(root->left,sum,k);
+    if(k>0){
+        sum+=root->data;
+        k--;
+    }
+    inorder(root->right,sum,k);
+}
+int sum(Node* root, int k) 
+{ 
+    int sum=0;
+    inorder(root,sum,k);
+    return sum;
+}
