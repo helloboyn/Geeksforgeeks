@@ -1,18 +1,31 @@
+//Smallest number with sum of digits as N and divisible by 10^N
 class Solution{
 	public:
 	string digitsNum(int N)
 	{
-	    int num = N;
-	    int cnt = 0;
-	    while(num > 9){
-	        num = num -9;
-	        cnt++;
-	    }
-	    string str = to_string(num);
-	    for(int i =0;i<cnt;i++)
-	        str = str + '9';
-	    for(int i =0;i<N;i++)
-	        str = str + '0';
-	    return str;
+	    string ans=""; 		//string as null for biginning
+	    if(N%9!=0) 			//if is not equal to 0
+	        ans=to_string(N%9); 	//converting no. into strings which is divisible by 9
+	    for(int i=1;i<=N/9;i++) 	// in order to form the 9 how many can i make it
+	        ans+="9"; 		// whenever id correct keep updating 9 as answer
+	    for(int i=1;i<=N;i++)	 // for making 10 into power of N 
+	        ans+="0";		 // that means have to put zero at the end
+	    return ans;  		//now the number as bulid this is the ans
 	}
 };
+
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		Solution ob;
+		string ans = ob.digitsNum(n);
+		cout << ans <<"\n";
+	}
+	return 0;
+}
+// } Driver Cod
