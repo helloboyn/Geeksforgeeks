@@ -1,0 +1,11 @@
+class Solution{   
+public:
+    long long numberOfSubsequences(int n, long long A[]){
+        // code here 
+        long long ans = 1;
+        for(long long i = 0; i < n; i++)
+            if(__builtin_popcount(A[i]) == 1)
+                ans = (ans*2) % (int)(1e9+7);
+        return ans-1;
+    }
+};
