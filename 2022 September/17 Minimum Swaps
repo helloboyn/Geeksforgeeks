@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int minimumSwaps(int c[],int v[],int n,int k,int b,int T){
+        int swaps = 0, curr = 0;
+        for(int i = n-1; i >= 0; i--){
+            int curr_time = ceil((float)(b - c[i]) / v[i]);
+            if(curr_time > T){
+                curr++;
+                continue;
+            }
+            swaps += curr;
+            k--;
+            if(k == 0)  return swaps;
+        }
+    return -1;
+    }
+};
