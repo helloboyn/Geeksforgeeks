@@ -1,0 +1,12 @@
+class Solution {
+  public:
+    int solve(int n,int k){
+        if(n == 0)
+            return 1;
+        return (k + solve(n-1,k))%n;
+    }
+    int safePos(int n, int k) {
+        // code here
+        return solve(n,k) + 1;
+    }
+};
