@@ -1,0 +1,29 @@
+class Solution {
+  public:
+  string temp;
+  unordered_set<string> mp;
+  void helper(int i, int j, vector<vector<int>>& grid, int reli, int relj){
+      if(i<0 || j<0 || j>=grid[0].size() || i>=grid.size() || grid[i][j]==0){
+          return;
+      }
+      grid[i][j]=0;
+      temp = temp + to_string(reli-i) + "," + to_string(relj-j) + " ";
+      helper(i,j+1,grid,reli,relj);
+      helper(i+1,j,grid,reli,relj);
+      helper(i-1,j,grid,reli,relj);
+      helper(i,j-1,grid,reli,relj);
+  }
+    int countDistinctIslands(vector<vector<int>>& grid) {
+        int ans=0;
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(grid[i][j]==1){
+                    temp="";
+                    helper(i,j,grid,i,j);
+                    mp.insert(temp);
+                }
+            }
+        }
+        return mp.size();
+    }
+}
