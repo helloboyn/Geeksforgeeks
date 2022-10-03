@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int sumOfAll(int l, int r){
+        // code here
+        int n=1e4+5;
+        vector<int> primes(n+5);
+        for(int i=1;i<=n;i++)primes[i]=i;
+        primes[0]=0;
+        for(int i=2;i<=n;i++){
+            if(primes[i]==i){
+                for(int j=i;j<=n;j+=i){
+                    if(primes[j]==j)primes[j]=i;
+                    else primes[j]+=i;
+                }
+            }
+        }
+        for(int i=2;i<=n;i++)primes[i]+=primes[i-1];
+        int ans=primes[r]-primes[l-1];
+        return ans;
+    }
+};
