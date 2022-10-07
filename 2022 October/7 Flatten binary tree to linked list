@@ -1,0 +1,21 @@
+class Solution
+{
+    Node * pre ;
+    public:
+    Solution(){
+        pre = nullptr ;
+    }
+    void flatten(Node *root)
+    {
+        if(root == nullptr) 
+           return  ;
+        Node *r = root -> right ;
+        Node *l = root -> left ;
+        root -> left = nullptr ;
+        if(pre)
+          pre -> right = root ;
+        pre = root ;
+        flatten(l);
+        flatten(r) ;
+      }
+};
