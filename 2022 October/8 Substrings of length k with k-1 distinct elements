@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    int countOfSubstrings(string s, int k) {
+        if(k > s.length()) 
+        return 0;
+        unordered_map<char,int> mp;
+        int ans = 0;
+        int i = 0; 
+        for(i;i<k;i++) {
+            mp[s[i]]++;
+        }
+        if(mp.size() == k-1) ans++;
+        for(i; i < s.length(); i++) {
+            mp[s[i]]++;
+            mp[s[i-k]]--;
+            auto it = mp.find(s[i-k]);
+            if(it->second == 0) mp.erase(it);
+            if(mp.size() == k-1) ans++;
+        }
+        return ans;
+    }
+};
