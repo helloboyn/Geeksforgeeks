@@ -27,13 +27,10 @@ class Solution {
                         newc == destination.second) return dis + 1;
                     q.push({1+dis,{newr,newc}});
                 }
-                if(source.first==destination.first && 
-                        source.second==destination.second) return 0;
             }
             if(source.first==destination.first && 
                 source.second==destination.second) return 0;
         }
         return -1;
     }
-    
 };
