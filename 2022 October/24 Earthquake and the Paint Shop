@@ -1,0 +1,26 @@
+struct alphanumeric {
+    string name;
+    int count;
+};
+class Solution {
+  public:
+    vector<alphanumeric> sortedStrings(int N, vector<string> A) {
+        // code here
+        struct alphanumeric obj[N];
+        vector<alphanumeric> ans;
+        map<string,int> hash;
+        int j=0;
+        for(int i=0;i<N;i++)
+        {
+            hash[A[i]]++;
+        }
+        for(auto x:hash)
+        {
+            obj[j].name=x.first;
+            obj[j].count=x.second;
+            ans.push_back(obj[j]);
+            j++;
+        }
+        return ans;
+    }
+};
