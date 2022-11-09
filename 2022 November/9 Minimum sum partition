@@ -1,0 +1,31 @@
+class Solution{
+  private:
+    vector<vector<int>>dp;
+    int ans = INT_MAX;
+    
+    int rec(int arr[], int n, int i, int sum, int left) {
+        if(i == n)
+            return ans = min(ans, abs(sum - left));
+        
+        
+        if(dp[i][left] != -1)
+            return dp[i][left];
+        
+        return dp[i][left] = min (
+                rec(arr, n, i + 1, sum - arr[i], left + arr[i]), 
+                rec(arr, n, i + 1, sum, left)
+            );
+    }
+    
+  public:
+	int minDifference(int arr[], int n) {
+	    if(n == 1)
+	        return arr[0];
+	        
+	    
+	    int sum = accumulate(arr, arr + n, 0);
+	    dp.resize(n , vector<int>(sum, -1));
+	    
+	    return rec(arr, n, 0, sum, 0);
+	} 
+};
