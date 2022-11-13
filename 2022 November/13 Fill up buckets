@@ -1,0 +1,10 @@
+class Solution{
+public:
+    int totalWays(int n, vector<int>capacity) {
+        long long mod=1e9+7, sum=1;
+        sort(capacity.begin(),capacity.end());
+        for(int i=0;i<n;i++)
+            sum=(sum*(capacity[i]-i))%mod;
+        return sum;
+    }
+};
