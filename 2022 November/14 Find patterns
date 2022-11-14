@@ -1,19 +1,20 @@
 class Solution{   
 public:
     int numberOfSubsequences(string S, string W) {
-        int k;
-        int ans=0;
-        for(int i=0;i<S.size();i++) {
-            if(S[i]==W[0]) {
-                k=0;
-                for(int j=i;j<S.size() && k<W.size();j++) {
-                    if(S[j]==W[k]){
-                        S[j]='@';
-                        k++;
-                    }
+        int n = S.size();
+        int m = W.size();
+        int ans = 0;
+        for(int i=0;i<n;i++){
+            int k=0 ;
+            for(int j=i;j<n;j++){
+                if(S[j]==W[k]){
+                    k++;
+                    S[j]='&';
                 }
-                if(k==W.size())
+                if(k==m){
                     ans++;
+                    break;
+                }
             }
         }
         return ans;
