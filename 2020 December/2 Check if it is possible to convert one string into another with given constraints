@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    int isItPossible(string s, string t, int m, int n) {
+        int i = 0, j = 0;
+        if(m != n) return 0;
+        while(i < m && j < n) {
+            if(s[i] == '#') i++;
+            if(t[j] == '#') j++;
+            if(isalpha(s[i]) && isalpha(t[j])){
+                if(s[i] != t[j]) return 0;
+                if(s[i] == 'A' && i < j)
+                    return 0;
+                if(s[i] == 'B' && i > j)
+                    return 0;
+                i++;
+                j++;
+            }
+        }
+        while(i < m)  {
+            if(s[i] == 'A' || s[i] == 'B') return 0;
+            i++;
+        }
+        while(j < n)  {
+            if(t[j] == 'A' || t[j] == 'B') return 0;
+            j++;
+        }
+        return 1;
+    }
+};
