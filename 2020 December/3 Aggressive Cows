@@ -1,0 +1,25 @@
+class Solution {
+public:
+
+    int solve(int n, int k, vector<int> &stalls) {
+    //apply  binary search on min distance
+    sort(stalls.begin(),stalls.end());
+    int lo=0,hi=1e9+7,mid,ans;
+    while(lo<=hi){
+        mid=lo+(hi-lo)/2;
+        int cnt=1,prev=stalls[0];
+        for(int i=1;i<stalls.size();i++){
+            if((stalls[i]-prev)>=mid){
+                cnt++;
+                prev=stalls[i];
+            }
+        }
+        if(cnt>=k){
+            ans=mid;
+            lo=mid+1;
+        }
+        else hi=mid-1;
+    }
+    return ans;
+    }
+};
