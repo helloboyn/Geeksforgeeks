@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    void travel(Node* root, int &K, int &ans){
+        if(root == NULL){
+            return;
+        }
+        travel(root->left, K, ans);
+        K--;
+        if(K == 0){
+            ans = root->data;
+        }
+        travel(root->right, K, ans);
+        return;
+    }
+    int KthSmallestElement(Node *root, int K) {
+        int ans = -1;
+        travel(root, K, ans);
+        return ans;
+    }
+};
