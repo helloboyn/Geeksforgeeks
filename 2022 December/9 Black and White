@@ -1,0 +1,21 @@
+long long numOfWays(int N, int M)
+    {
+        int mod =1e9+7,ans=0;
+         int dx[]={-1,-2,-2,-1,1,2,2,1};
+         int dy[]={-2,-1,1,2,2,1,-1,-2};
+         
+        for(long i=0;i<N;i++){
+            for(long j=0;j<M;j++){
+                int count=0;
+                for(long k=0;k<8;k++){
+                    long new_x=i+dx[k];
+                    long new_y=j+dy[k];
+                     if(new_x>=0 && new_x<N && new_y>=0 && new_y<M )
+                    count++;
+            }
+             ans+=(N*M-count-1);
+            ans%=mod;
+       }
+    }
+    return ans;
+}
