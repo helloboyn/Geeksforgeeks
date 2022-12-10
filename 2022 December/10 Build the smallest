@@ -1,0 +1,28 @@
+string buildLowestNumber(string num, int k)
+{
+ stack<char>st;
+ int i = 0;
+ while(i<num.size()){
+    if(k>0 && !st.empty() && st.top()>num[i]) {
+         if(!(st.size()==1 && st.top()=='0')) k--;
+         st.pop();
+     }
+     else {
+         st.push(num[i]);
+         i++;
+         if(st.size()==1 && st.top()=='0') st.pop();
+     }
+ }
+ while(k>0 && !st.empty()){
+     st.pop();
+     k--;
+ }
+ string ans ;
+ while(!st.empty()){
+     ans += st.top();
+     st.pop();
+ }
+ if(ans.size()==0) return "0";
+ reverse(ans.begin(),ans.end());
+ return ans;
+}
