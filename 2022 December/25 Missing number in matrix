@@ -1,0 +1,101 @@
+class Solution {
+public:
+    bool rown(vector<vector<int>> &a,int n)
+    {
+        int r1=0;
+        for(int i=0;i<n;i++)
+        {
+            r1+=a[0][i];
+        }
+        for(int i=1;i<n;i++)
+        {
+            int r=0;
+            for(int j=0;j<n;j++)
+            {
+                r+=a[i][j];
+            }
+            if(r1!=r)
+
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool coln(vector<vector<int>> &a,int n)
+    {
+        int c1=0;
+        for(int i=0;i<n;i++)
+        {
+            c1+=a[i][0];
+        }
+        for(int i=1;i<n;i++)
+        {
+            int c=0;
+            for(int j=0;j<n;j++)
+            {
+                c+=a[j][i];
+            }
+            if(c1!=c)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool dia(vector<vector<int>> &a,int n)
+    {
+        int d1=0,d2=0;
+        for(int i=0;i<n;i++)
+        {
+            d1+=a[i][n-1-i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            d2+=a[i][i];
+        }
+        return (d1==d2);
+    }
+    long long int MissingNo(vector<vector<int> >& matrix) {
+        // Code here
+        int n=matrix.size();
+        long long int row,col,sum=0,rsum=0,diag=0,diag2=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    row=i;
+                    col=j;
+                    break;
+                }
+            }
+        }
+        long long int ans=0;
+        if(row==0)
+        {
+            for(int i=0;i<n;i++)
+            {
+                ans+=matrix[1][i]-matrix[0][i];
+            }
+            matrix[row][col]=ans;
+        }
+        else
+        {
+            for(int i=0;i<n;i++)
+            {
+                ans+=matrix[0][i]-matrix[row][i];
+            }
+            matrix[row][col]=ans;
+        }
+        if(rown(matrix,n)&&coln(matrix,n)&&dia(matrix,n)&&(ans>0))
+        {
+            return ans;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
