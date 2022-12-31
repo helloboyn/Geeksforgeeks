@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    int minLaptops(int N, int start[], int end[]) {
+        
+        priority_queue< pair<int, int>, vector< pair< int, int > >, greater< pair<int, int> > > process;
+        
+        for( int i=0; i<N; i++ ){
+            process.push( { start[i], end[i] } );
+        }
+        
+        priority_queue< int, vector<int>, greater<int> > pq; // process that end first remain at top
+        int ans = 1;
+        
+        while( !process.empty() ){
+            if( pq.empty() ){
+                pq.push( process.top().second );
+                process.pop();
+            } else{
+                int et = pq.top();
+                
+                if( process.top().first < et ){
+                    pq.push( process.top().second );
+                    process.pop();
+                } else pq.pop();
+                
+                int ongoingProcess = pq.size();
+                ans = max( ans, ongoingProcess );
+                
+            }
+        }
+        
+        return ans;
+        
+    }
+};
