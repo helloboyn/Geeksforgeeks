@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    vector<int> maximumValue(Node* node) {
+        vector<int> ans;
+        queue<Node*> q;
+        q.push(node);
+        while(!q.empty()) {
+            int level = q.size();
+            int currMAX = INT_MIN;
+            for(int i = 0; i < level; i++) {
+                auto currNode = q.front();
+                q.pop();
+                currMAX = max(currMAX,currNode->data);
+                if(currNode->left)
+                    q.push(currNode->left);
+                if(currNode->right)
+                    q.push(currNode->right);
+            }
+            ans.push_back(currMAX);
+        }
+        return ans;
+    }
+};
