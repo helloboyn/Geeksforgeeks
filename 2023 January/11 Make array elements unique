@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    long long int minIncrements(vector<int> arr, int N) {
+        // Code here
+        sort(arr.begin(),arr.end());
+        ll ans =0;
+        set<ll> st;
+        
+        for(ll a : arr) {
+            auto pos = st.find(a);
+            if(st.find(a)!=st.end()) {
+                ll val = *st.rbegin()+1;
+                ans+=(val-a);
+                a=val;
+            }
+            st.insert(a);
+        }
+        return ans;
+    }
+};
