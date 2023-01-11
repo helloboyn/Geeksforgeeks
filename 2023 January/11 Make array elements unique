@@ -1,20 +1,23 @@
 class Solution {
   public:
     long long int minIncrements(vector<int> arr, int N) {
-        // Code here
-        sort(arr.begin(),arr.end());
-        ll ans =0;
-        set<ll> st;
-        
-        for(ll a : arr) {
-            auto pos = st.find(a);
-            if(st.find(a)!=st.end()) {
-                ll val = *st.rbegin()+1;
-                ans+=(val-a);
-                a=val;
-            }
-            st.insert(a);
-        }
-        return ans;
+        long long int  i,j,count=0,max_val=0;
+        map<int,long long >m1;
+       // sort the array 
+       sort(arr.begin(),arr.end());
+        // to calculate the count of operation
+       for(i=0;i<N;i++)
+       {
+           if(max_val<arr[i])
+           {
+               max_val=arr[i]; //update the max_val
+           }
+           else
+           {
+              max_val++;
+               count+=max_val-arr[i]; // operations to increment the curr_element
+           }
+       }
+        return count;
     }
 };
