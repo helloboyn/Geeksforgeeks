@@ -1,0 +1,34 @@
+class Solution
+{
+public:
+    int an=INT_MIN;
+
+    int k=0;
+    void ans(Node* root)
+    {
+        if(root==NULL)
+        {
+            return ;
+        }
+        ans(root->left);
+        if((root->left!=NULL)&&(root->right!=NULL))
+        {
+            if(__gcd(root->left->data,root->right->data)>an)
+           {
+              k=root->data;
+              an=__gcd(root->left->data,root->right->data);
+           }
+        }
+        ans(root->right);
+    }
+    int maxGCD( Node* root)
+    {
+        //code here
+        if(root==NULL)
+        {
+            return 0;
+        }
+        ans(root);
+        return k;
+    }
+};
