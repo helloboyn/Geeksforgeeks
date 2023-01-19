@@ -1,0 +1,12 @@
+class Solution{
+    public:
+    int carpetBox(int a, int b, int c, int d){
+        int q = max(a , b);
+        int w = max(c , d);
+        int e = min(a , b);
+        int r = min(c , d);
+        if(q>w) return 1 + carpetBox(q/2 , e , c , d);
+        else if(e>r) return 1 + carpetBox(q , e/2 , c , d);
+        else return 0;
+    }
+};
