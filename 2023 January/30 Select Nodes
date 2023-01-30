@@ -1,0 +1,60 @@
+//{ Driver Code Starts
+//Initial Template for C++
+
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// } Driver Code Ends
+//User function Template for C++
+
+class Solution{
+  public:
+    vector<int> helper(int u, int p, vector<vector<int>>& adj) {
+        vector<int> ans = {0, 1};
+        for (int v : adj[u]) {
+            if(v != p) {
+                auto x = helper(v, u, adj);
+                ans[0] += x[1];
+                ans[1] += min(x[0], x[1]);
+            }
+        }
+        return ans;
+    }
+    
+    int countVertex(int N, vector<vector<int>>edges){
+        vector<vector<int>> adj(N);
+        for (auto& edge : edges) {
+            adj[edge[0]-1].push_back(edge[1]-1);
+            adj[edge[1]-1].push_back(edge[0]-1);
+        }
+        auto ans = helper(0, -1, adj);
+        return min(ans[0], ans[1]);
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int N;
+        cin >> N;
+        vector<vector<int>>edges;
+        for(int i = 0; i < N-1; i++){
+            int x,y;
+            cin >> x >> y;
+            vector<int> edge;
+            edge.push_back(x);
+            edge.push_back(y);
+            edges.push_back(edge);
+        }
+        
+        Solution ob;
+        cout << ob.countVertex(N, edges) << endl;
+    }
+    return 0; 
+} 
+// } Driver Code Ends
