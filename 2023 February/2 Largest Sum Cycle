@@ -1,0 +1,121 @@
+//{ Driver Code Starts
+//Initial Template for C++
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+//User function Template for C++
+class Solution
+{
+  public:
+  void dfs( int node , vector<int>&dis , vector<bool>&vis , vector<int>&Edge ,  int distance , int &ans , vector<bool>&extra )
+
+  {
+
+      if( node != -1 )
+
+      {
+
+          if(!vis[node])
+
+          {
+
+                
+
+                extra[node ] = true ;
+
+                vis[node]  = true  ; 
+
+                dis[node] = distance ;
+
+             dfs( Edge[node] , dis , vis , Edge , distance+node , ans , extra ) ;
+
+          }
+
+          else if(extra[node]){
+
+          ans = max( ans , distance - dis[node]  )  ;
+
+          
+
+      }
+
+        
+
+          extra[node] = false ;
+
+     
+
+      }
+
+      
+
+      
+
+      
+
+      
+
+  }
+
+  long long largestSumCycle(int N, vector<int> Edge)
+
+  {
+
+    // code here
+
+    
+
+      
+
+        int ans = -1 ;
+
+        vector<bool>vis(  N , false ) , extra( N , false );
+
+        vector<int>dis( N , 0 ) ;
+
+        
+
+      for( int i = 0 ; i < N ; i++ )
+
+      {
+
+          if(!vis[i])
+
+          {
+
+               dfs( i , dis , vis , Edge , 0  , ans , extra )  ;
+
+              
+
+          }
+
+      }
+
+      
+
+      return ans ;
+
+      
+
+  }
+};
+
+//{ Driver Code Starts.
+signed main(){
+   int tc;
+   cin >> tc;
+   while(tc--){
+      int N;
+      cin >> N;
+      vector<int> Edge(N);
+      for(int i=0;i<N;i++){
+        cin>>Edge[i];
+      }
+      Solution obj;
+      long long ans=obj.largestSumCycle(N, Edge);
+      cout<<ans<<endl;
+   }
+   return 0;
+}
+// } Driver Code Ends
