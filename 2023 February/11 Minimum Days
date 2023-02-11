@@ -1,0 +1,87 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class Array
+{
+public:
+    template <class T>
+    static void input(vector<T> &A,int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d ",&A[i]);
+        }
+    }
+
+    template <class T>
+    static void print(vector<T> &A)
+    {
+        for (int i = 0; i < A.size(); i++)
+        {
+            cout << A[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+
+// } Driver Code Ends
+class Solution {
+  public:
+    int getMinimumDays(int n,string s, vector<int> &p) {
+        int count=0;
+        for(auto i=1;i<n;i++){
+            if(s[i]==s[i-1])count++;
+        }
+        int c=0;
+        for(auto i:p){
+            if(count==0)return c;
+            
+            if(i==0 and s[i]==s[i+1]){
+                count--;
+            }
+            else
+            if(i==n-1 and s[i]==s[i-1]){
+                count--;
+            }
+            else
+            if(s[i]==s[i+1] and s[i]==s[i-1]){
+                count-=2;
+            }
+            else if(s[i]==s[i-1] || s[i]==s[i+1]){
+                count--;
+            }
+            s[i]='?';
+            c++;
+        }
+        return n;
+        
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    scanf("%d ",&t);
+    while(t--){
+        
+        int N;
+        scanf("%d",&N);
+        string S;cin>>S;
+        
+        vector<int> P(N);
+        Array::input(P,N);
+        
+        Solution obj;
+        int res = obj.getMinimumDays(N,S, P);
+        
+        cout<<res<<endl;
+        
+    }
+}
+
+// } Driver Code Ends
