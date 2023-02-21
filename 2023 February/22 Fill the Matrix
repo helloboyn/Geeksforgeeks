@@ -1,0 +1,29 @@
+class Solution{   
+
+public:
+
+    int minIteration(int N, int M, int x, int y)
+
+    {    
+
+        int i, j;
+
+        vector<vector<int>> vertex{{1,1},{1,M},{N,1},{N,M}};
+
+        int dis=-1;
+
+        for(i=0;i<4;i++)
+
+        {
+
+            dis=max(dis, abs(vertex[i][0]-x)+abs(vertex[i][1]-y));
+
+        }
+
+        
+
+        return dis;
+
+    }
+
+};
