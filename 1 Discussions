@@ -1,0 +1,7 @@
+class Solution {
+  public:
+    long long int minOperations(int N) {
+        long long int mid= N/2;
+        return mid*(mid+N%2);
+    }
+};
