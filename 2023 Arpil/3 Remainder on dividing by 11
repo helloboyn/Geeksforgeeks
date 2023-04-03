@@ -1,0 +1,10 @@
+class Solution
+{
+public:
+    int xmod11(string x)
+    {
+       int a=0;
+       for(auto &num: x)a=(a*10+(num-48))%11;
+       return a;
+    }
+};
