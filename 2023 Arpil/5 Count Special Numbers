@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int countSpecialNumbers(int N, vector<int> arr) {
+       int mx=*max_element(arr.begin(),arr.end());
+       int ans=0;
+       vector<int> seive(mx+1,0);
+       for(int i=0;i<N;i++){
+           if(seive[arr[i]]<=1){
+               for(int j=arr[i];j<=mx;j+=arr[i]) seive[j]++;
+           }
+       }
+       for(int i=0;i<N;i++){
+           if(seive[arr[i]]>1) ans++;
+       }
+       return ans;
+    }
+};
