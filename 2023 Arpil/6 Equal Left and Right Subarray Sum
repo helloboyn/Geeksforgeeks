@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    int equalSum(int n, vector<int> &arr) {
+        if(n==1){
+            return 1;
+        }
+        int tot=accumulate(arr.begin(),arr.end(),0);
+        int curr=0;
+        for(int p=0;p<n;p++){
+            if(curr==(tot-arr[p])){
+                return p+1;
+            }else{
+                tot-=arr[p];
+                curr+=arr[p];
+            }
+        }
+        return -1;
+    }
+};
