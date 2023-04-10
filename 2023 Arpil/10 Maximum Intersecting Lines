@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int maxIntersections(vector<vector<int>> lines, int N) {
+        // Code here
+    map<int, int> endpoints;
+    for (auto& line : lines) {
+        endpoints[line[0]]++;
+        endpoints[line[1] + 1]--;
+    }
+    int intersections = 0;
+    int activeLines = 0;
+    for (auto& count : endpoints) {
+        activeLines += count.second;
+        intersections = max(intersections, activeLines);
+    }
+    return intersections;
+    }
+};
