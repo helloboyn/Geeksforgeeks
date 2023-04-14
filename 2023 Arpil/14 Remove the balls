@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int finLength(int N, vector<int> color, vector<int> radius) {
+        stack<int> s,t;
+        s.push(color[0]);
+        t.push(radius[0]);
+        
+        for(int i = 1; i< N;i++)
+        {
+            if((!s.empty()) && (!t.empty()) ){
+                if((s.top() == color[i] )&& (t.top() == radius[i]))
+            {
+                s.pop();
+                t.pop();
+            }else{
+                s.push(color[i]);
+                t.push(radius[i]);}
+            }
+            else{
+                 s.push(color[i]);
+                t.push(radius[i]);
+            }
+        }
+        return s.size();
+    }
+};
