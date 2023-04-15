@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int totalTime(int n, vector<int> &arr, vector<int> &time) {
+        vector<bool> pres(n+1,false);
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(pres[arr[i]]){
+                ans+=time[arr[i]-1];
+            }
+            else{
+                pres[arr[i]]=true;
+                ans++;
+            }
+        }
+        return ans-1;
+    }
+};
