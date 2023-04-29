@@ -1,0 +1,17 @@
+class Solution{
+    public:
+    long long findNumber(long long N){
+        // Code here
+        long long digit=1;
+        long res =0;
+        while(N>0){
+            N--;
+            
+            res += ((2*(N%5))+1)*digit;
+            N=N/5;
+            digit *=10;
+            
+        }
+        return res;
+    }
+};
