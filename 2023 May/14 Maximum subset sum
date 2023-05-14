@@ -1,0 +1,16 @@
+class Solution {
+
+  public:
+    long long findMaxSubsetSum(int N, vector<int> &A) {
+        // code here
+        long long ans = 0;
+        vector<pair<long long,long long>> dp(N,{0,0});
+        dp[0].first = A[0];
+        dp[0].second = 0;
+        for(int i = 1; i<N; i++){
+            dp[i].first = max(dp[i-1].first,dp[i-1].second)+A[i];
+            dp[i].second = dp[i-1].first;
+        }
+        return max(dp[N-1].first,dp[N-1].second);
+    }
+};
