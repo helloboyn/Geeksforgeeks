@@ -1,0 +1,37 @@
+class Solution{
+    public:
+    
+    void modifier(Node *fst, Node *&slo){
+        if(fst == NULL){
+            return;
+        }
+        modifier(fst->next, slo);
+        int data = slo->data;
+        slo->data = fst->data-slo->data;
+        fst->data = data;
+        slo = slo->next;
+    }
+    
+    struct Node* modifyTheList(struct Node *head)
+    {
+        Node *fast = head, *slow = head;
+        while(fast){
+            fast = fast->next;
+            if(fast){
+                fast = fast->next;
+            }
+            if(fast && fast->next){
+                slow = slow->next;
+            }
+        }
+        if(fast == NULL){
+            fast = slow->next;
+        }
+        else{
+            fast = slow->next->next;
+        }
+        slow = head;
+        modifier(fast, slow);
+        return head;
+    }
+};
