@@ -1,0 +1,28 @@
+class Solution{
+public:
+    Node* rev(Node*h){
+        Node* p=nullptr,*c=h;
+        while(c){
+            Node* t=c->next;
+            c->next=p;
+            p=c;
+            c=t;
+        }
+        return p;
+    }
+    
+    int getNthFromLast(Node *head, int n)
+    {
+           head=rev(head);
+           int c=0;
+           Node* h=head;
+           while(h){
+               c++;
+               h=h->next;
+           }
+           if(n>c)return -1;
+           h=head;
+           while(--n) h=h->next;
+           return h->data;
+    }
+};
